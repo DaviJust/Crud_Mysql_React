@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import React, {useState} from "react"
 import './App.css';
 
 function App() {
+  const [values, setvalues] = useState();
+
+  const handleChangesValues = (value) => {
+    setvalues((prevValue) => ({
+      ...prevValue,
+      [value.target.name]: value.target.value,
+    }));
+  }
+
+  const handleClickButton = () => (
+    console.log(values)
+  );
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className=" app--container">
+    <div  className="mb-3 register--container">
+      <h1>Scrim Shop</h1>
+      <input type="text" name="name" placeholder='Nome' className=' form-control register--input' onChange={handleChangesValues}></input>
+      <input type="text" name="cost" placeholder='Preco' className=' form-control register--input'  onChange={handleChangesValues}></input>
+      <input type="text" name="category" placeholder='categoria' className='form-control  register--input' onChange={handleChangesValues}></input>
+       <button className="btn btn-primary" onClick={() => handleClickButton()}>Cadastrar</button>
+    </div>
+
     </div>
   );
 }
